@@ -132,6 +132,7 @@ zle -N clear-keep-buffer
 bindkey '^Xl' clear-keep-buffer
 bindkey -s '^Xgc' 'git commit -m ""\C-b'
 bindkey -s '^Xgp' 'git push'
+bindkey -s '^Xgs' 'git status'
 
 eval "$(zoxide init --cmd cd zsh)"
 
