@@ -131,8 +131,7 @@ clear-keep-buffer() {
 zle -N clear-keep-buffer
 bindkey '^Xl' clear-keep-buffer
 bindkey -s '^Xgc' 'git commit -m ""\C-b'
-bindkey -s '^Xgp' 'git push'
-bindkey -s '^Xgs' 'git status'
+bindkey -s '^Xgr' 'git remote add origin git@github.com:'
 
 eval "$(zoxide init --cmd cd zsh)"
 

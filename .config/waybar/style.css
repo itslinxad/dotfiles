@@ -3,17 +3,17 @@
 /* --- Global-Settings ---*/
 
 * {
-  font-family: 'JetBrainsMono Nerd Font';
+  font-family: "JetBrainsMono Nerd Font";
   font-size: 12px;
   font-weight: bold;
   min-height: 0px;
-  }
+}
 
-  /* --- Waybar ---*/
-  window#waybar {
+/* --- Waybar ---*/
+window#waybar {
   background-color: transparent;
   transition-property: background-color;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 window#waybar.empty #window {
@@ -32,8 +32,7 @@ window#waybar.empty #window {
 /* --- Tooltip ---*/
 tooltip {
   opacity: 1;
-
- }
+}
 
 /* --- Workspaces --- */
 #workspaces {
@@ -52,19 +51,17 @@ tooltip {
 }
 
 #workspaces button.active {
-    background-color: alpha(@foreground, 1);
-    border-radius: 2px;
-    box-shadow: 0 1px 2px rgba(10, 10, 10, 0.8);
-    color: @background;
-    opacity: 1; 
+  background-color: alpha(@foreground, 1);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.8);
+  color: @background;
+  opacity: 1;
 }
-
 
 #workspaces button:hover {
-    background-color: @foreground;
-    color: @background;
+  background-color: @foreground;
+  color: @background;
 }
-
 
 /* --- General Modules --- */
 
@@ -103,9 +100,8 @@ tooltip {
 #power-profiles-daemon.performance,
 #power-profiles-daemon.balanced,
 #power-profiles-daemon.power-saver {
-font-size: 13.5px;
-padding-left: 3px;
-
+  font-size: 13.5px;
+  padding-left: 3px;
 }
 
 #network {
@@ -147,16 +143,15 @@ padding-left: 3px;
   color: @background;
 }
 
-
 /* Specific Module */
 
 #tray > .passive {
-    -gtk-icon-effect: dim;
+  -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: @transparent;
+  -gtk-icon-effect: highlight;
+  background-color: @transparent;
 }
 
 .hidden {
@@ -164,17 +159,16 @@ padding-left: 3px;
 }
 
 tooltip {
- padding: 4px;
- background-color: alpha(@background, 1);
- opacity: 1;
- border: 1.5px solid alpha(@foreground, 0.8);
- border-radius: 4px;
- font-size: 12px;
- 
+  padding: 4px;
+  background-color: alpha(@background, 1);
+  opacity: 1;
+  border: 1.5px solid alpha(@foreground, 0.8);
+  border-radius: 4px;
+  font-size: 12px;
 }
 tooltip label {
-    color: @foreground;
-    font-weight: normal;
+  color: @foreground;
+  font-weight: normal;
 }
 
 #custom-voxtype {
@@ -191,11 +185,11 @@ tooltip label {
 #mpris {
   color: @foreground;
   animation: repeat;
-	animation-name: blink;
-	animation-duration: 3s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  animation-name: blink;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 #custom-screenrecording-indicator {
@@ -213,19 +207,16 @@ tooltip label {
 }
 
 @keyframes blink-recording {
-    to {
-        color: @foreground;
-        background-color: alpha(@background, 0.85);
-    }
+  to {
+    color: @foreground;
+    background-color: alpha(@background, 0.85);
+  }
 }
 
-
-
 @keyframes blink {
-    to {
-        color: #4a4a4a;
-        
-    }
+  to {
+    color: #4a4a4a;
+  }
 }
 
 #battery.warning {
