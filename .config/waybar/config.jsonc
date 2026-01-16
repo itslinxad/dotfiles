@@ -23,7 +23,7 @@
   ],
   "modules-center": ["hyprland/window"],
   "modules-right": [
-    "backlight",
+    // "backlight",
     "bluetooth",
     "pulseaudio#output",
     "pulseaudio#input",
@@ -182,12 +182,12 @@
       "power-saver": "󰾆",
     },
   },
-  "backlight": {
-    "device": "intel_backlight",
-    "format": "{icon}",
-    "tooltip-format": "{percent}%",
-    "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"],
-  },
+  // "backlight": {
+  //   "device": "intel_backlight",
+  //   "format": "{icon}",
+  //   "tooltip-format": "{percent}%",
+  //   "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"],
+  // },
   "custom/weather": {
     "format": "{}°",
     "tooltip": true,
