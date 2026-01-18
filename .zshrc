@@ -136,6 +136,6 @@ bindkey -s '^Xgr' 'git remote add origin git@github.com:'
 eval "$(zoxide init --cmd cd zsh)"
 
 # Auto-start tmux only in interactive terminals
-if [[ -z "$TMUX" ]] && [[ -n "$DISPLAY" || -n "$WAYLAND_DISPLAY" ]] && [[ $- == *i* ]]; then
-  tmux attach -t main || tmux new -s main
-fi
+# if [[ -z "$TMUX" ]] && [[ -n "$DISPLAY" || -n "$WAYLAND_DISPLAY" ]] && [[ $- == *i* ]]; then
+#   tmux attach -t main || tmux new -s main
+# fi
