@@ -106,11 +106,16 @@ tooltip {
 }
 
 #custom-omarchy {
+  color: #89b4fa;
   padding-left: 3px;
 }
 
 #idle_inhibitor {
   padding-left: 3px;
+}
+
+#idle_inhibitor.activated {
+  color: @active;
 }
 
 #custom-weather {
@@ -137,12 +142,24 @@ tooltip {
   padding-left: 3px;
 }
 
+#power-profiles-daemon.performance {
+  color: #f38ba8;
+}
+
+#power-profiles-daemon.power-saver {
+  color: #a6e3a1;
+}
+
 #network {
   padding-left: 3px;
 }
 
 #memory {
   padding-right: 3px;
+}
+
+#bluetooth.connected {
+  color: #89b4fa;
 }
 
 /* --- Hover right module  --- */
