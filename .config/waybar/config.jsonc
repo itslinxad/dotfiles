@@ -1,4 +1,5 @@
 {
+  // "output": ["HDMI-A-1"], // Include if you want it to only show on a specific monitor
   "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
