@@ -121,6 +121,14 @@ tooltip {
   padding-right: 10px;
 }
 
+#cpu {
+  padding-right: 10px;
+}
+
+#memory {
+  padding-right: 10px;
+}
+
 #power-profiles-daemon,
 #power-profiles-daemon.performance,
 #power-profiles-daemon.balanced,
