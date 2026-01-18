@@ -108,7 +108,7 @@
   "memory": {
     "interval": 2,
     "format": "{percentage}%  ",
-    "on-click": "omarchy-launch-or-focus-tui btop",
+    "on-click": "omarchy-launch-or-focus-tui htop",
   },
   "clock": {
     "format": " {:%I:%M %p %a}",
@@ -132,6 +132,7 @@
       "activated": "󰛊",
       "deactivated": "󰾫",
     },
+    "on-click": "omarchy-toggle-idle",
   },
   "network": {
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
