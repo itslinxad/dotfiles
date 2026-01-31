@@ -1,8 +1,9 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 vim.g.mapleader = " "
+vim.g.lazyvim_dashboard = false
 
 vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
@@ -34,5 +35,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.splitkeep = "cursor"
 vim.opt.mouse = ""
+vim.opt.showtabline = 0
+vim.opt.guicursor = "n-v-c-i:block-Cursor"
 
 vim.opt.formatoptions:append({ "r" })
