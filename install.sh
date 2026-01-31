@@ -42,6 +42,7 @@ UTIL_PACKAGES=(
   flatpak
   pavucontrol
   piper
+  kalarm
 )
 
 STYLE_PACKAGES=(
