@@ -3,6 +3,6 @@
   "theme": "catppuccin-macchiato",
   "keybinds": {
     "leader": "ctrl+x",
-    "app_exit": "ctrl+c,<leader>qa"
+    "app_exit": "ctrl+c,<leader>q"
   }
 }
