@@ -25,9 +25,9 @@ fi
 
 if [ -e ~/dotfiles/.config/omarchy/themes/ ]; then
   rm -rf ~/dotfiles/.config/omarchy/themes/
-  echo "Removed ~/dotfiles/.config/omarchy/themes/"
+  echo "removed ~/dotfiles/.config/omarchy/themes/"
 else
-  echo "Skipped removal (not found): ~/dotfiles/.config/omarchy/themes/"
+  echo "skipped removal (not found): ~/dotfiles/.config/omarchy/themes/"
 fi
 
 if [ -e ~/dotfiles/.config/tmux/ ]; then
@@ -42,6 +42,13 @@ if [ -e ~/dotfiles/.config/waybar/ ]; then
   echo "Removed ~/dotfiles/.config/waybar/"
 else
   echo "Skipped removal (not found): ~/dotfiles/.config/waybar/"
+fi
+
+if [ -e ~/dotfiles/.config/opencode/ ]; then
+  rm -rf ~/dotfiles/.config/opencode/
+  echo "Removed ~/dotfiles/.config/opencode/"
+else
+  echo "Skipped removal (not found): ~/dotfiles/.config/opencode/"
 fi
 
 if [ -e ~/dotfiles/.tmux.conf ]; then
@@ -64,6 +71,7 @@ cp -r ~/.config/ghostty/ ~/dotfiles/.config/
 cp -r ~/.config/hypr/ ~/dotfiles/.config/
 cp -r ~/.config/nvim/ ~/dotfiles/.config/
 cp -r ~/.config/omarchy/themes/ ~/dotfiles/.config/omarchy/themes/
+cp -r ~/.config/opencode/ ~/dotfiles/.config/
 cp -r ~/.config/tmux/ ~/dotfiles/.config/
 cp -r ~/.config/waybar/ ~/dotfiles/.config/
 cp ~/.tmux.conf ~/dotfiles/
