@@ -266,6 +266,10 @@ tooltip label {
   }
 }
 
+#battery.charging {
+  padding-right: 10px;
+}
+
 #battery.warning {
   color: #c95d0f;
   background-color: alpha(@background, 0.9);
