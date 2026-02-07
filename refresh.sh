@@ -30,13 +30,6 @@ else
   echo "(not found): ~/dotfiles/.config/omarchy/themes/"
 fi
 
-if [ -e ~/dotfiles/.config/tmux/ ]; then
-  rm -rf ~/dotfiles/.config/tmux/
-  echo "Removed ~/dotfiles/.config/tmux/"
-else
-  echo "(not found): ~/dotfiles/.config/tmux/"
-fi
-
 if [ -e ~/dotfiles/.config/waybar/ ]; then
   rm -rf ~/dotfiles/.config/waybar/
   echo "Removed ~/dotfiles/.config/waybar/"
@@ -72,7 +65,6 @@ cp -r ~/.config/hypr/ ~/dotfiles/.config/
 cp -r ~/.config/nvim/ ~/dotfiles/.config/
 cp -r ~/.config/omarchy/themes/ ~/dotfiles/.config/omarchy/themes/
 cp -r ~/.config/opencode/ ~/dotfiles/.config/
-cp -r ~/.config/tmux/ ~/dotfiles/.config/
 cp -r ~/.config/waybar/ ~/dotfiles/.config/
 cp ~/.tmux.conf ~/dotfiles/
 cp ~/.zshrc ~/dotfiles/

@@ -1,243 +1,236 @@
 @import "../omarchy/current/theme/waybar.css";
 
-/* --- Global-Settings ---*/
+/* @import "colors.css"; */
 
 * {
-  font-family: "Commit Mono Nerd Font";
-  font-size: 14px;
-  font-weight: bold;
-  min-height: 0px;
-}
-
-/* --- Waybar ---*/
-window#waybar {
-  background-color: transparent;
-  transition-property: background-color;
-  transition-duration: 0.5s;
-}
-
-window#waybar.empty #window {
-  background: transparent;
-  background-color: transparent;
   border: none;
-  border-radius: 0;
-  color: transparent;
-  padding: 0;
-  margin: 0;
+  border-radius: 0px;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-weight: bold;
+   font-size: 11px;
 }
 
-#waybar.empty .modules-center {
-  opacity: 0;
+window#waybar {
+    background-color: transparent;
+}
+window#waybar > box {
+  margin: 0px 0px 2px 0px;
+  background-color: @background;
+  box-shadow: 0px 1px 2px 1px #101010;
+  transition-property: background-color;
+  transition-duration: .5s;
 }
 
-/* --- Tooltip ---*/
-tooltip {
-  opacity: 1;
+/* Left-Modules */
+
+.modules-left {
+  margin: 0px 0px;
+  padding: 0px 0px 0px;
+  background-color: @background;
 }
+
+#left1 {
+  background-color: alpha(@foreground, 0.05);
+  border-bottom: 1px solid alpha(@foreground, 0.5);
+  border-radius: 2px;
+  margin: 1px 2px;
+  padding: 0px 2px 0px; 
+}
+
+#left2 {
+  background-color: alpha(@foreground, 0.05);
+  border-bottom: 1px solid alpha(@foreground, 0.5);
+  border-radius: 2px;
+  padding: 0px 4px 0px;
+  margin: 1px 2px;
+}
+
+#left3 {
+  background-color: alpha(@foreground, 0.05);
+  border-bottom: 1px solid alpha(@foreground, 0.5);
+  border-radius: 2px;
+  margin: 1px 2px;
+  padding: 0px 2px 0px;
+}
+
+.modules-right {
+  margin: 0px 0px;
+  padding: 0px 0px 0px; 
+  background-color: @background;
+}
+
+#right1 {
+  background-color: alpha(@foreground, 0.05);
+  border-bottom: 1px solid alpha(@foreground, 0.5);
+  border-radius: 2px;
+  margin: 1px 2px;
+  padding: 0px 2px 0px;
+}
+
 
 /* --- Workspaces --- */
 #workspaces {
-  border-radius: 6px;
-  margin: 2px 3px;
+  background-color: @background;
+  opacity: 1;
+  margin: 1px 0px;
+  padding: 0px 0px 0px;
 }
 
 #workspaces button {
-  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.5);
-  padding: 4px 4px;
-  margin: 0 4px;
-  border-radius: 4px;
-  border: 1px solid alpha(@dark, 0.9);
-  background-color: alpha(@background, 0.9);
-  color: @foreground;
+  padding: 0px 10px;
+  margin: 1px 2px;
+  border-radius: 2px;
+  background-color: alpha(@foreground, 0.05);
+  color: @foreground; 
+  transition: all 0.15s ease-in-out;
   opacity: 1;
 }
 
 #workspaces button.active {
-  background-color: alpha(@foreground, 0.9);
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.5);
+  color: @foreground;
+  padding: 0 10px;
+  margin: 1px 2px;
+  background-color: alpha(@foreground, 0.05);
+  border-bottom: 1.5px solid alpha(@foreground, 1);
+  border-radius: 2px;
+  opacity: 1.0;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.empty {
+  background-color: alpha(@foreground, 0.05);
+  color: @foreground;
+  opacity: 0.75;
+  border-radius: 2px;
+  transition: all 0.15s ease-in-out;
+  padding: 0px 5px;
+  margin: 1px 2px;
+}
+
+#workspaces button.empty.active {
+  background-color: alpha(@foreground, 0.05);
+  border-bottom: 1.5px solid alpha(@foreground, 1);
+  border-radius: 2px;
+  color: @foreground;
+  opacity: 1;
+  padding: 0px 10px;
+  margin: 1px 2px;
+}
+
+#workspaces button:hover {
+  background: @foreground;
   color: @background;
   opacity: 1;
 }
 
-#workspaces button.active:hover {
-  background-color: alpha(@foreground, 0.6);
-}
-
-#workspaces button:hover {
-  background-color: @background;
-  color: @foreground;
-}
-
-/* --- General Modules --- */
-
-#tray,
-#window,
-#mpris,
-#cpu,
-#clock,
-#battery,
-#network,
-#memory,
-#backlight,
-#bluetooth,
-#pulseaudio,
-#power-profiles-daemon,
-#custom-weather,
-#custom-update,
 #idle_inhibitor,
+#custom-updatespacman,
+#custom-omarchy,
+#custom-update,
+#custom-screenrecording-indicator,
+#clock,
+#custom-omarchy-theme,
+#custom-omarchy-theme-set,
 #custom-voxtype,
 #custom-voxtype.recording,
 #custom-voxtype.transcribing,
-#custom-omarchy,
-#custom-screenrecording-indicator,
-#custom-updatespacman {
-  min-width: 18px;
-  margin: 2px 4px;
-  padding: 0px 6px;
-  border-radius: 4px;
-  border: 1px solid alpha(@dark, 0.9);
-  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.5);
-  background-color: alpha(@background, 0.9);
-  color: @foreground;
-  opacity: 1;
-  transition-property: background-color, color, opacity;
-  transition-duration: 0.5s;
+#mpris
+#tray,
+#cpu,
+#memory,
+#battery,
+#backlight,
+#network,
+#power-profiles-daemon,
+#mpris,
+#bluetooth,
+#pulseaudio {
+  min-width: 10px;
+  margin: 1px 1px 1px 1px;
+  padding: 0 4px;
+  transition: all 0.15s ease-in-out;
 }
 
-#custom-omarchy {
-  color: #89b4fa;
-  padding-left: 3px;
-}
-
-#idle_inhibitor {
-  padding-left: 3px;
-}
-
-#idle_inhibitor.activated {
-  color: @active;
-}
-
-#custom-weather {
-  padding-left: 8px;
-}
-
-#pulseaudio.output {
-  padding-right: 10px;
-}
-
-#cpu {
-  padding-right: 10px;
-}
-
-#memory {
-  padding-right: 10px;
+tooltip {
+  padding: 2px;
 }
 
 #power-profiles-daemon,
 #power-profiles-daemon.performance,
 #power-profiles-daemon.balanced,
 #power-profiles-daemon.power-saver {
-  font-size: 13.5px;
-  padding-left: 3px;
+font-size: 13.5px;
+margin-top: 0px;
+padding-right: 8px;
 }
 
-#power-profiles-daemon.performance {
-  color: #f38ba8;
+#custom-theme-switcher {
+  font-size: 13px;
 }
-
-#power-profiles-daemon.power-saver {
-  color: #a6e3a1;
-}
-
-#network {
-  padding-left: 3px;
-  padding-right: 8px;
-}
-
-#memory {
-  padding-right: 3px;
-}
-
-#bluetooth.connected {
-  color: #89b4fa;
-}
-
-/* --- Hover right module  --- */
-#clock:hover,
-#tray:hover,
-#custom-expand-icon:hover,
-#cpu:hover,
-#memory:hover,
-#window:hover,
-#mpris:hover,
-#temperature:hover,
-#battery:hover,
-#power-profiles-daemon:hover,
-#bluetooth:hover,
-#backlight:hover,
-#custom-omarchy:hover,
-#custom-weather:hover,
-#custom-update:hover,
-#idle_inhibitor:hover,
-#custom-screenrecording-indicator,
-#custom-updatespacman:hover,
-#network:hover,
-#pulseaudio:hover {
-  border-radius: 4px;
-  opacity: 0.9;
-  background-color: @foreground;
-  color: @background;
-}
-
-/* Specific Module */
 
 #tray > .passive {
-  -gtk-icon-effect: dim;
+    -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-  background-color: @transparent;
-}
-
-.hidden {
-  opacity: 0;
-}
-
-tooltip {
-  padding: 4px;
-  background-color: alpha(@background, 1);
-  opacity: 1;
-  border: 1.5px solid alpha(@foreground, 0.8);
-  border-radius: 4px;
-  font-size: 12px;
-}
-tooltip label {
-  color: @foreground;
-  font-weight: normal;
+    -gtk-icon-effect: highlight;
+    background-color: @transparent;
 }
 
 #custom-voxtype {
   min-width: 12px;
-  margin: 0 0 0 7.5px;
+  margin: 0 0 0 2.5px;
 }
 
 #custom-voxtype.recording {
   color: #a55555;
 }
 
-/* Specific animation Module */
-
-#mpris {
-  color: @foreground;
-  animation: repeat;
-  animation-name: blink;
-  animation-duration: 3s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+.hidden {
+  opacity: 0;
 }
+/* --- Hover right module  --- */
+#idle_inhibitor:hover,
+#custom-updatespacman:hover,
+#custom-omarchy:hover,
+#custom-update:hover,
+#custom-screenrecording-indicator:hover,
+#clock:hover,
+#custom-omarchy-theme:hover,
+#custom-omarchy-theme-set:hover,
+#custom-theme-switcher:hover,
+#mpris:hover
+#tray:hover,
+#cpu:hover,
+#memory:hover,
+#battery:hover,
+#backlight:hover,
+#network:hover,
+#power-profiles-daemon:hover,
+#mpris:hover,
+#bluetooth:hover,
+#pulseaudio:hover {
+  border-radius: 2px;
+  opacity: 0.9;
+  background-color: @foreground;
+  color: @background;
+}
+
+tooltip {
+ padding: 4px;
+ background: @background;
+ border: 1px solid alpha(@foreground, 0.8);
+ border-radius: 8px;
+}
+tooltip label {
+    color: @foreground;
+    font-weight: normal;
+    font-size: 10px;
+}
+
+/* Specific animation Module */
 
 #custom-screenrecording-indicator {
   animation-timing-function: linear;
@@ -248,42 +241,52 @@ tooltip label {
 
 #custom-screenrecording-indicator.active {
   color: #eb7087;
-  background-color: alpha(@background, 0.9);
   animation-name: blink-recording;
   animation-duration: 0.5s;
 }
 
 @keyframes blink-recording {
-  to {
-    color: @foreground;
-    background-color: alpha(@background, 0.9);
-  }
+    to {
+        color: @background;
+    }
+}
+
+
+#mpris {
+background-color: alpha(@foreground, 0.05);
+border-bottom: 1px solid alpha(@foreground, 0.5);
+border-radius: 2px;
+margin: 1px 2px;
+padding: 0px 4px 0px;
+color: @foreground;
+animation: repeat;
+	animation-name: blink;
+	animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 @keyframes blink {
-  to {
-    color: #4a4a4a;
-  }
+    to {
+        color: @foreground;
+        
+    }
 }
-
-#battery.charging {
-  padding-right: 10px;
-}
-
 #battery.warning {
   color: #c95d0f;
-  background-color: alpha(@background, 0.9);
+  background-color: @background;
 }
 
 @keyframes blink2 {
   to {
-    background-color: alpha(@background, 0.9);
+    background-color: transparent;
     color: #f53c3c;
   }
 }
 
 #battery.critical:not(.charging) {
-  background-color: alpha(@background, 0.9);
+  background-color: @background;
   color: #e6d8ba;
   animation-name: blink2;
   animation-duration: 0.5s;
