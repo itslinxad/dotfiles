@@ -90,7 +90,7 @@
 		"class<waterfox|waterfox-bin>": "",
 		"class<microsoft-edge>": "",
 		"class<Chromium|Thorium|[Cc]hrome>": "",
-		"class<brave-browser>": "🦁",
+		"class<brave-browser>": "",
 		"class<tor-browser>": "",
 		"class<firefox-developer-edition>": "🦊",
 		"class<kitty|konsole>": "",
@@ -128,6 +128,7 @@
 		"title<virtualbox>": "💽",
 		"class<remmina>": "🖥️",
 		"class<VSCode|code-url-handler|code-oss|codium|codium-url-handler|VSCodium>": "󰨞",
+    "class<.*viber.*>": "",
     "class<dev.zed.Zed>": "󰵁",
 		"class<codeblocks>": "󰅩",
 		"title<.*github.*>": "",
@@ -159,7 +160,7 @@
 		}
 	},
   "custom/omarchy": {
-    "format": "<span font='omarchy'>\ue900</span>",
+    "format": "󰣇",
     "on-click": "omarchy-menu",
     "on-click-right": "xdg-terminal-exec",
     "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
@@ -215,7 +216,7 @@
     ]
   },
   "clock": {
-    "format": " {:%H:%M %d/%m/%Y}",
+    "format": " {:%I:%M %p %b %d}",
     "format-alt": "{:L%d %B W%V %Y}",
     "tooltip-format": "<span>{calendar}</span>",
     "calendar": {
