@@ -1,6 +1,6 @@
 # Dotfiles
 
-My Personal dotfiles managed with GNU Stow for Arch Linux with Hyprland.
+My personal dotfiles managed with GNU Stow for Arch Linux with Hyprland ([Omarchy](https://github.com/omarchy)).
 
 ## Prerequisites
 
@@ -21,12 +21,13 @@ chmod +x install.sh
 
 This will install:
 
+- **AUR helper**: yay (installed automatically if not present)
 - **Core utilities**: stow, cmake
-- **Development tools**: neovim, git, nodejs, npm, php, composer
-- **Shell environment**: zsh, yazi, zoxide, tmux
-- **System utilities**: curl, wget, flatpak, pavucontrol, piper
-- **Styling**: Nerd fonts, themes
-- **AUR packages**: waybar modules, wttrbar, brave-bin, and more
+- **Development tools**: neovim, git, base-devel, filezilla, nodejs, npm, php, composer
+- **Shell environment**: zsh (with Oh My Zsh, Powerlevel10k, autosuggestions, syntax-highlighting), yazi, zoxide, tmux (with TPM)
+- **System utilities**: curl, wget, flatpak, pavucontrol, piper, kalarm
+- **Styling**: otf-commit-mono-nerd, cmatrix
+- **AUR packages**: waybar-module-pacman-updates-git, wttrbar, bibata-cursor-theme, brave-bin, paru, snapd, tty-clock
 
 ### 2. Deploy Dotfiles
 
@@ -37,27 +38,22 @@ git clone https://github.com/itslinxad/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
-#### Deploy all configurations:
+#### Deploy all packages:
 
 ```bash
-stow .
+stow ghostty hypr nvim omarchy opencode tmux waybar zsh
 ```
 
-#### Deploy specific configurations:
+#### Deploy specific packages:
 
-For individual config directories:
-
-```bash
-stow -d ~/.config/nvim -t ~/.config/nvim .
-stow -d ~/.config/hypr -t ~/.config/hypr .
-stow -d ~/.config/waybar -t ~/.config/waybar .
-```
-
-Or manually link root-level dotfiles:
+Each top-level directory is a stow package. Deploy individual packages by name:
 
 ```bash
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+stow nvim       # Deploy Neovim config to ~/.config/nvim/
+stow hypr       # Deploy Hyprland config to ~/.config/hypr/
+stow waybar     # Deploy Waybar config to ~/.config/waybar/
+stow tmux       # Deploy tmux config to ~/.tmux.conf
+stow zsh        # Deploy Zsh config to ~/.zshrc
 ```
 
 ## Usage
@@ -71,49 +67,85 @@ chmod +x refresh.sh
 ./refresh.sh
 ```
 
-This script will copy your current configurations from `~/.config/` and `~/` back into the dotfiles repository.
+This script deletes the existing config copies in the repo and copies fresh configs from your live system (`~/.config/` and `~/`) back into each stow package directory.
 
 ### Unstow Configurations
 
-To remove symlinks and unstow configurations:
+To remove symlinks and unstow all packages:
 
 ```bash
 cd ~/dotfiles
-stow -D .
+stow -D ghostty hypr nvim omarchy opencode tmux waybar zsh
+```
+
+Or unstow a specific package:
+
+```bash
+stow -D nvim
 ```
 
 ## Repository Structure
 
+Each top-level directory is a **stow package** that mirrors the target path from `$HOME`:
+
 ```
 dotfiles/
-├── .config/
-│   ├── ghostty/       # Terminal emulator config
-│   ├── hypr/          # Hyprland compositor config
-│   ├── nvim/          # Neovim configuration
-│   ├── omarchy/       # Omarchy themes
-│   ├── opencode/      # Code editor config
-│   ├── themes/        # Color themes
-│   ├── tmux/          # Tmux plugin configs
-│   └── waybar/        # Waybar status bar config
-├── .tmux.conf         # Tmux configuration
-├── .zshrc             # Zsh shell configuration
-├── install.sh         # System package installation script
-└── refresh.sh         # Sync configs back to repo
+├── ghostty/                   # Ghostty terminal emulator
+│   └── .config/ghostty/
+│       ├── config
+│       └── shaders/           # Custom GLSL cursor shaders
+├── hypr/                      # Hyprland compositor
+│   └── .config/hypr/
+│       ├── hyprland.conf
+│       ├── bindings.conf
+│       ├── monitors.conf
+│       ├── input.conf
+│       ├── looknfeel.conf
+│       ├── autostart.conf
+│       ├── hypridle.conf
+│       ├── hyprlock.conf
+│       ├── hyprsunset.conf
+│       └── xdph.conf
+├── nvim/                      # Neovim (LazyVim-based)
+│   └── .config/nvim/
+│       ├── init.lua
+│       ├── lazy-lock.json
+│       └── lua/
+│           ├── config/
+│           └── plugins/
+├── omarchy/                   # Omarchy theme framework
+│   └── .config/omarchy/
+│       └── themes/itslinx/    # Custom "itslinx" theme
+├── opencode/                  # OpenCode editor
+│   └── .config/opencode/
+│       └── opencode.json
+├── tmux/                      # Tmux
+│   └── .tmux.conf
+├── waybar/                    # Waybar status bar
+│   └── .config/waybar/
+│       ├── config.jsonc
+│       └── style.css
+├── zsh/                       # Zsh shell
+│   └── .zshrc
+├── install.sh                 # System package installation script
+└── refresh.sh                 # Sync live configs back to repo
 ```
 
 ## Stow Commands Reference
 
-| Command     | Description                     |
-| ----------- | ------------------------------- |
-| `stow .`    | Create symlinks for all configs |
-| `stow -D .` | Remove all symlinks (unstow)    |
-| `stow -R .` | Restow (useful after updates)   |
-| `stow -n .` | Dry run (preview changes)       |
-| `stow -v .` | Verbose output                  |
+| Command | Description |
+| --- | --- |
+| `stow <package>` | Create symlinks for a package |
+| `stow -D <package>` | Remove symlinks for a package (unstow) |
+| `stow -R <package>` | Restow a package (useful after updates) |
+| `stow -n <package>` | Dry run (preview changes) |
+| `stow -v <package>` | Verbose output |
 
 ## Notes
 
-- Stow creates symlinks from this repository to your `$HOME` directory
-- The `.config` directory structure is preserved when stowing
-- Use `refresh.sh` to pull changes from your live system back into this repo
+- Each top-level directory is a stow package that mirrors the target path from `$HOME`
+- Configs under `.config/` are stored as `<package>/.config/<app>/` so stow symlinks them correctly
+- Root-level dotfiles (`.zshrc`, `.tmux.conf`) are stored directly inside their package directory
+- Use `refresh.sh` to pull changes from your live system back into this repo (destructive copy -- deletes then re-copies)
+- Catppuccin Mocha is the consistent theme across all tools
 - Always review changes before committing updated configurations
