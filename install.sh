@@ -24,6 +24,7 @@ fi
 PACKAGES=(
   stow
   cmake
+  openssh
 )
 
 DEV_PACKAGES=(
