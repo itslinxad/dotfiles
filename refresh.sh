@@ -25,7 +25,7 @@ fi
 
 if [ -e ~/dotfiles/omarchy/.config/omarchy/themes/ ]; then
   rm -rf ~/dotfiles/omarchy/.config/omarchy/themes/
-  echo "removed ~/dotfiles/omarchy/.config/omarchy/themes/"
+  echo "Removed ~/dotfiles/omarchy/.config/omarchy/themes/"
 else
   echo "(not found): ~/dotfiles/omarchy/.config/omarchy/themes/"
 fi
