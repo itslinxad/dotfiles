@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-set -e  # exit on error
+set -e # exit on error
 
 # Update system
 sudo pacman -Syu --noconfirm
 
 # Install yay if not present
-if ! command -v yay &> /dev/null; then
+if ! command -v yay &>/dev/null; then
   git clone https://aur.archlinux.org/yay.git
   cd yay
   makepkg -si --noconfirm
@@ -89,5 +89,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugi
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
-echo "✔ All packages installed"
+git config --global user.name "Linux Adona"
+git config --global user.email "linuxadona17@gmail.com"
 
+echo "✔ All packages installed"
