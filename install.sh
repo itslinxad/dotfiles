@@ -14,7 +14,7 @@ if ! command -v yay &>/dev/null; then
   rm -rf yay
 fi
 
-if [ -d "~/.tmux/plugins/tpm" ]; then
+if [ -d "$HOME/.tmux/plugins/tpm" ]; then
   echo "TPM not found. Installing now."
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 else
@@ -72,7 +72,8 @@ sudo pacman -S --needed --noconfirm \
   "${PACKAGES[@]}" \
   "${DEV_PACKAGES[@]}" \
   "${SHELL_PACKAGES[@]}" \
-  "${UTIL_PACKAGES[@]}"
+  "${UTIL_PACKAGES[@]}" \
+  "${STYLE_PACKAGES[@]}"
 
 yay -S --needed --noconfirm "${AUR_PACKAGES[@]}"
 
