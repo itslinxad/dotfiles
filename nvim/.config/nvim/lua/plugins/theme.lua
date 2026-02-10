@@ -1,1 +1,8 @@
-/home/linux/.config/omarchy/current/theme/neovim.lua
+return {
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = true,
+    priority = 1000,
+  },
+}
