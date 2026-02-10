@@ -179,6 +179,10 @@ padding-right: 8px;
     background-color: @transparent;
 }
 
+#idle_inhibitor.activated {
+  color: @active;
+}
+
 #custom-voxtype {
   min-width: 12px;
   margin: 0 0 0 2.5px;

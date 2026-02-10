@@ -114,6 +114,7 @@
 		"title<.*qwen.*>": "󰚩",
 		"class<subl>": "󰅳",
 		"class<slack>": "",
+    "class<.*discord.*>": "",
 		"class<mpv>": "",
 		"class<celluloid|Zoom>": "",
 		"class<Cider>": "󰎆 ",
