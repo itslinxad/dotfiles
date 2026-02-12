@@ -95,5 +95,6 @@ git clone https://github.com/fdellwing/zsh-bat.git $ZSH_CUSTOM/plugins/zsh-bat
 
 git config --global user.name "Linux Adona"
 git config --global user.email "linuxadona17@gmail.com"
+git config --global init.defaultBranch main
 
 echo "✔ All packages installed"
