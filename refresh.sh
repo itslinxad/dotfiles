@@ -2,72 +2,54 @@
 
 set -e  # exit on error
 
-if [ -e ~/dotfiles/ghostty/.config/ghostty/ ]; then
-  rm -rf ~/dotfiles/ghostty/.config/ghostty/
-  echo "Removed ~/dotfiles/ghostty/.config/ghostty/"
-else
-  echo "(not found): ~/dotfiles/ghostty/.config/ghostty/"
-fi
+DOTFILES=~/dotfiles
 
-if [ -e ~/dotfiles/hypr/.config/hypr/ ]; then
-  rm -rf ~/dotfiles/hypr/.config/hypr/
-  echo "Removed ~/dotfiles/hypr/.config/hypr/"
-else
-  echo "(not found): ~/dotfiles/hypr/.config/hypr/"
-fi
+# Each entry: "source_path:dotfiles_dest_path"
+# Directories should have a trailing slash
+entries=(
+  "~/.config/ghostty/:ghostty/.config/ghostty/"
+  "~/.config/hypr/:hypr/.config/hypr/"
+  "~/.config/nvim/:nvim/.config/nvim/"
+  "~/.config/omarchy/themes/:omarchy/.config/omarchy/themes/"
+  "~/.config/waybar/:waybar/.config/waybar/"
+  "~/.config/opencode/opencode.json:opencode/.config/opencode/opencode.json"
+  "~/.config/tmux/tmux.conf:tmux/.config/tmux/tmux.conf"
+  "~/.zshrc:zsh/.zshrc"
+)
 
-if [ -e ~/dotfiles/nvim/.config/nvim/ ]; then
-  rm -rf ~/dotfiles/nvim/.config/nvim/
-  echo "Removed ~/dotfiles/nvim/.config/nvim/"
-else
-  echo "(not found): ~/dotfiles/nvim/.config/nvim/"
-fi
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
 
-if [ -e ~/dotfiles/omarchy/.config/omarchy/themes/ ]; then
-  rm -rf ~/dotfiles/omarchy/.config/omarchy/themes/
-  echo "Removed ~/dotfiles/omarchy/.config/omarchy/themes/"
-else
-  echo "(not found): ~/dotfiles/omarchy/.config/omarchy/themes/"
-fi
+for entry in "${entries[@]}"; do
+  src="${entry%%:*}"
+  dest="${entry##*:}"
 
-if [ -e ~/dotfiles/waybar/.config/waybar/ ]; then
-  rm -rf ~/dotfiles/waybar/.config/waybar/
-  echo "Removed ~/dotfiles/waybar/.config/waybar/"
-else
-  echo "(not found): ~/dotfiles/waybar/.config/waybar/"
-fi
+  # Expand tilde
+  src="${src/#\~/$HOME}"
+  dest="$DOTFILES/$dest"
 
-if [ -e ~/dotfiles/opencode/.config/opencode/opencode.json ]; then
-  rm ~/dotfiles/opencode/.config/opencode/opencode.json
-  echo "Removed ~/dotfiles/opencode/.config/opencode/opencode.json"
-else
-  echo "(not found): ~/dotfiles/opencode/.config/opencode/opencode.json"
-fi
+  # Check source exists (resolve symlinks so stow links work)
+  if [ ! -e "$src" ]; then
+    echo "SKIP (source not found): $src"
+    continue
+  fi
 
-if [ -e ~/dotfiles/tmux/.tmux.conf ]; then
-  rm ~/dotfiles/tmux/.tmux.conf
-  echo "Removed ~/dotfiles/tmux/.tmux.conf"
-else
-  echo "(not found): ~/dotfiles/tmux/.tmux.conf"
-fi
+  # Copy source to a temp location first, so that removing stow
+  # symlink targets doesn't break the source before we read it
+  staging="$tmpdir/$dest"
+  mkdir -p "$(dirname "$staging")"
+  if [ -d "$src" ]; then
+    cp -rL "$src" "$staging"
+  else
+    cp -L "$src" "$staging"
+  fi
 
-if [ -e ~/dotfiles/zsh/.zshrc ]; then
-  rm ~/dotfiles/zsh/.zshrc
-  echo "Removed ~/dotfiles/zsh/.zshrc"
-else
-  echo "(not found): ~/dotfiles/zsh/.zshrc"
-fi
+  # Clean existing destination and replace with staged copy
+  rm -rf "$dest"
+  mkdir -p "$(dirname "$dest")"
+  mv "$staging" "$dest"
 
-echo "dotfiles reset"
+  echo "Copied $src -> $dest"
+done
 
-cp -r ~/.config/ghostty/ ~/dotfiles/ghostty/.config/
-cp -r ~/.config/hypr/ ~/dotfiles/hypr/.config/
-cp -r ~/.config/nvim/ ~/dotfiles/nvim/.config/
-cp -r ~/.config/omarchy/themes/ ~/dotfiles/omarchy/.config/omarchy/themes/
-cp -r ~/.config/waybar/ ~/dotfiles/waybar/.config/
-cp ~/.config/opencode/opencode.json ~/dotfiles/opencode/.config/opencode/
-cp ~/.tmux.conf ~/dotfiles/tmux/
-cp ~/.zshrc ~/dotfiles/zsh/
-
-echo "dotfiles copied to stow"
 echo "✔  Refresh complete"
