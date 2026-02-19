@@ -91,4 +91,4 @@ fi
 
 echo "✔ All packages installed"
 
-source ./configs.sh
+source ~/dotfiles/configs.sh
