@@ -66,6 +66,7 @@ AUR_PACKAGES=(
   paru
   snapd
   tty-clock
+  github-cli
 )
 
 sudo pacman -S --needed --noconfirm \
@@ -93,8 +94,26 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use
 git clone https://github.com/fdellwing/zsh-bat.git $ZSH_CUSTOM/plugins/zsh-bat
 
+echo "✔ All packages installed"
+
 git config --global user.name "Linux Adona"
 git config --global user.email "linuxadona17@gmail.com"
 git config --global init.defaultBranch main
 
-echo "✔ All packages installed"
+# GitHub SSH Key Setup
+SSH_KEY="$HOME/.ssh/id_ed25519"
+if [ ! -f "$SSH_KEY" ]; then
+  echo "Generating new SSH key for GitHub..."
+  ssh-keygen -t ed25519 -C "linuxadona17@gmail.com" -f "$SSH_KEY" -N ""
+  eval "$(ssh-agent -s)"
+  ssh-add "$SSH_KEY"
+  echo "Authenticating with GitHub CLI..."
+  gh auth login -p ssh -h github.com -w
+  gh ssh-key add "${SSH_KEY}.pub" --title "$(hostname)"
+else
+  echo "SSH key already exists at $SSH_KEY. Skipping generation."
+  eval "$(ssh-agent -s)"
+  ssh-add "$SSH_KEY"
+fi
+
+echo "✔ SSH setup done"
