@@ -79,41 +79,16 @@ sudo pacman -S --needed --noconfirm \
 yay -S --needed --noconfirm "${AUR_PACKAGES[@]}"
 
 # Composer installation
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('sha384', 'composer-setup.php') === 'c8b085408188070d5f52bcfe4ecfbee5f727afa458b2573b8eaaf77b3419b0bf2768dc67c86944da1544f06fa544fd47') { echo 'Installer verified'.PHP_EOL; } else { echo 'Installer corrupt'.PHP_EOL; unlink('composer-setup.php'); exit(1); }"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-
-sudo mv composer.phar /usr/local/bin/composer
-
-# Zsh Setup
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use
-git clone https://github.com/fdellwing/zsh-bat.git $ZSH_CUSTOM/plugins/zsh-bat
+if command -v composer &>/dev/null; then
+  echo "Composer already installed. Skipping."
+else
+  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+  php -r "if (hash_file('sha384', 'composer-setup.php') === 'c8b085408188070d5f52bcfe4ecfbee5f727afa458b2573b8eaaf77b3419b0bf2768dc67c86944da1544f06fa544fd47') { echo 'Installer verified'.PHP_EOL; } else { echo 'Installer corrupt'.PHP_EOL; unlink('composer-setup.php'); exit(1); }"
+  php composer-setup.php
+  php -r "unlink('composer-setup.php');"
+  sudo mv composer.phar /usr/local/bin/composer
+fi
 
 echo "✔ All packages installed"
 
-git config --global user.name "Linux Adona"
-git config --global user.email "linuxadona17@gmail.com"
-git config --global init.defaultBranch main
-
-# GitHub SSH Key Setup
-SSH_KEY="$HOME/.ssh/id_ed25519"
-if [ ! -f "$SSH_KEY" ]; then
-  echo "Generating new SSH key for GitHub..."
-  ssh-keygen -t ed25519 -C "linuxadona17@gmail.com" -f "$SSH_KEY" -N ""
-  eval "$(ssh-agent -s)"
-  ssh-add "$SSH_KEY"
-  echo "Authenticating with GitHub CLI..."
-  gh auth login -p ssh -h github.com -w
-  gh ssh-key add "${SSH_KEY}.pub" --title "$(hostname)"
-else
-  echo "SSH key already exists at $SSH_KEY. Skipping generation."
-  eval "$(ssh-agent -s)"
-  ssh-add "$SSH_KEY"
-fi
-
-echo "✔ SSH setup done"
+source ./configs.sh
