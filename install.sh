@@ -223,5 +223,9 @@ install_config "Waybar" "waybar"
 omarchy-theme-set itslinx
 omarchy-restart-waybar
 
+sudo rm /usr/share/plymouth/themes/omarchy/logo.png
+sudo cp $HOME/dotfiles/pictures/logo.png /usr/share/plymouth/themes/omarchy/
+sudo limine-mkinitcpio
+
 echo ""
 echo "All configs installed!"
