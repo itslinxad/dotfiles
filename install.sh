@@ -34,6 +34,7 @@ DEV_PACKAGES=(
   filezilla
   nodejs
   npm
+  libxcrypt-compat
   php
 )
 
