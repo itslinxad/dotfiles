@@ -139,3 +139,6 @@ eval "$(zoxide init --cmd cd zsh)"
 # if [[ -z "$TMUX" ]] && [[ -n "$DISPLAY" || -n "$WAYLAND_DISPLAY" ]] && [[ $- == *i* ]]; then
 #   tmux attach -t main || tmux new -s main
 # fi
+export PATH="/home/itslinx/.config/herd-lite/bin:$PATH"
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/itslinx/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
