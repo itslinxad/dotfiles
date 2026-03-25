@@ -2,7 +2,7 @@
 config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
 
 # Font
-font-family = "JetBrainsMono Nerd Font"
+font-family = JetBrains Mono
 font-style = Regular
 font-size = 12
 
@@ -40,3 +40,8 @@ custom-shader-animation = always
 
 # Fix general slowness on hyprland (https://github.com/ghostty-org/ghostty/discussions/3224)
 async-backend = epoll
+
+theme = Catppuccin Mocha
+command = /usr/bin/zsh -l -i
+gtk-titlebar = false
+bell-features = no-system

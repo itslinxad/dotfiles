@@ -142,3 +142,6 @@ eval "$(zoxide init --cmd cd zsh)"
 export PATH="/home/itslinx/.config/herd-lite/bin:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/itslinx/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+# opencode
+export PATH=/home/itslinxad/.opencode/bin:$PATH
