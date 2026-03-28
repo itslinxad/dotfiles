@@ -3,18 +3,9 @@
 set -e # exit on error
 
 # Update system
-sudo pacman -Syu --noconfirm
+sudo dnf update
 
-# Install yay if not present
-if ! command -v yay &>/dev/null; then
-  git clone https://aur.archlinux.org/yay.git
-  cd yay
-  makepkg -si --noconfirm
-  cd ..
-  rm -rf yay
-fi
-
-if [ -d "$HOME/.tmux/plugins/tpm" ]; then
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   echo "TPM not found. Installing now."
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 else
@@ -30,8 +21,6 @@ PACKAGES=(
 DEV_PACKAGES=(
   neovim
   git
-  base-devel
-  filezilla
   nodejs
   npm
   libxcrypt-compat
@@ -40,7 +29,6 @@ DEV_PACKAGES=(
 
 SHELL_PACKAGES=(
   zsh
-  yazi
   zoxide
   tmux
 )
@@ -49,35 +37,18 @@ UTIL_PACKAGES=(
   curl
   wget
   flatpak
-  pavucontrol
-  piper
-  kalarm
 )
 
 STYLE_PACKAGES=(
-  otf-commit-mono-nerd
   cmatrix
 )
 
-AUR_PACKAGES=(
-  waybar-module-pacman-updates-git
-  wttrbar
-  bibata-cursor-theme
-  brave-bin
-  paru
-  snapd
-  tty-clock
-  github-cli
-)
-
-sudo pacman -S --needed --noconfirm \
+sudo dnf install -y \
   "${PACKAGES[@]}" \
   "${DEV_PACKAGES[@]}" \
   "${SHELL_PACKAGES[@]}" \
   "${UTIL_PACKAGES[@]}" \
   "${STYLE_PACKAGES[@]}"
-
-yay -S --needed --noconfirm "${AUR_PACKAGES[@]}"
 
 # Composer installation
 if command -v composer &>/dev/null; then
@@ -212,21 +183,10 @@ install_config() {
   fi
 }
 
-install_config "Zsh" "zsh"
 install_config "Ghostty" "ghostty"
-install_config "Hyprland" "hypr"
 install_config "Neovim" "nvim"
-install_config "Omarchy" "omarchy"
-install_config "OpenCode" "opencode"
 install_config "Tmux" "tmux"
-install_config "Waybar" "waybar"
-
-omarchy-theme-set itslinx
-omarchy-restart-waybar
-
-sudo rm /usr/share/plymouth/themes/omarchy/logo.png
-sudo cp $HOME/dotfiles/pictures/logo.png /usr/share/plymouth/themes/omarchy/
-sudo limine-mkinitcpio
+install_config "Zsh" "zsh"
 
 echo ""
 echo "All configs installed!"
