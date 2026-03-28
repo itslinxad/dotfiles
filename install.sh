@@ -25,6 +25,7 @@ DEV_PACKAGES=(
   npm
   libxcrypt-compat
   php
+  libnsl
 )
 
 SHELL_PACKAGES=(
