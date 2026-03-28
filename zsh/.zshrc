@@ -145,3 +145,6 @@ export PHP_INI_SCAN_DIR="/home/itslinx/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 # opencode
 export PATH=/home/itslinxad/.opencode/bin:$PATH
+
+# neovim
+export EDITOR=nvim
