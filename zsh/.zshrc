@@ -148,3 +148,6 @@ export EDITOR=nvim
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
+
+# mysql
+export PATH="/opt/lampp/bin/:$PATH"
