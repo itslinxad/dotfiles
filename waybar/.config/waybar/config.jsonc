@@ -1,4 +1,9 @@
 {
+  "spacing": 18,
+  "margin-top": 7,
+  "margin-bottom": -3,
+  "margin-left": 7,
+  "margin-right": 7,
   "modules-left": [
     "hyprland/workspaces",
   ],
@@ -6,6 +11,8 @@
     "clock"
   ],
   "modules-right": [
+    "cpu",
+    "memory",
     "pulseaudio",
     "network",
     "battery",
@@ -22,35 +29,54 @@
       "default": ""
     },
     "persistent-workspaces": {
-      "*": 5, // 5 workspaces by default on every monitor
+      "eDP-1": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ], // 5 workspaces by default on every monitor
+      "HDMI-A-1": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ] // 5 workspaces by default on every monitor
     }
   },
+  "cpu": {
+    "format": "  {usage}%",
+    "tooltip-format": "CPU Usage: {usage}%",
+    "interval": 2
+  },
+  "memory": {
+    "format": "   {}%",
+    "tooltip-format": "Memory Usage: {used} GB / {total} GB",
+    "interval": 2
+  },
   "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-bluetooth": "{volume}% {icon}",
-    "format-muted": "",
+    "format": "{icon}",
+    "tooltip-format": "{icon}   {volume}%",
+    "format-muted": "",
     "format-icons": {
       "headphone": "",
-      "headset": "",
-      "phone": "",
-      "phone-muted": "",
-      "portable": "",
-      "car": "",
       "default": [
+        "",
         "",
         ""
       ]
     },
+    "max-volume": 100,
     "scroll-step": 1,
+    "smooth-scrolling-threshold": 1,
     "on-click": "pavucontrol",
-    "ignored-sinks": [
-      "Easy Effects Sink"
-    ]
+    "on-click-right": "pamixer -t"
   },
   "network": {
     "interface": "wlp1s0",
     "format": "{ifname}",
-    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-wifi": "",
     "format-ethernet": "{ipaddr}/{cidr} 󰊗",
     "format-disconnected": "", //An empty format will hide the module.
     "tooltip-format": "{ifname} via {gwaddr} 󰊗",
@@ -61,15 +87,54 @@
   "clock": {
     "interval": 60,
     "format": "{:%I:%M %p}",
+    "tooltip-format": "{:%A, %B %d, %Y}"
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "omarchy-launch-bluetooth"
   },
   "battery": {
-    "format": "{capacity}% {icon}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
+    "format": "{icon}  {capacity}%",
+    "format-discharging": "{icon} {capacity}%",
+    "format-charging": "{icon}  {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-icons": {
+      "charging": [
+        "󰢜",
+        "󰂆",
+        "󰂇",
+        "󰂈",
+        "󰢝",
+        "󰂉",
+        "󰢞",
+        "󰂊",
+        "󰂋",
+        "󰂅"
+      ],
+      "default": [
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹"
+      ]
+    },
+    "format-full": "󰂅 {capacity}%",
+    "tooltip-format-discharging": "{timeTo}",
+    "tooltip-format-charging": "{timeTo}",
+    "interval": 5,
+    "on-click": "omarchy-menu power",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
   },
 }
