@@ -1,16 +1,18 @@
 {
   "spacing": 18,
-  "margin-top": 7,
+  "margin-top": 0,
   "margin-bottom": -3,
-  "margin-left": 7,
-  "margin-right": 7,
+  "margin-left": 0,
+  "margin-right": 0,
   "modules-left": [
     "hyprland/workspaces",
+    "mpris",
   ],
   "modules-center": [
     "clock"
   ],
   "modules-right": [
+    "power-profiles-daemon",
     "cpu",
     "memory",
     "pulseaudio",
@@ -45,6 +47,33 @@
       ] // 5 workspaces by default on every monitor
     }
   },
+  "mpris": {
+    "format": "   {artist} - {title}",
+    "format-paused": "<span color='grey'>{status_icon}</span>",
+    "max-length": 25,
+    "player-icons": {
+      "default": "⏸",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": ""
+    },
+    "ignored-players": [
+      "firefox",
+      "chromium",
+      "brave"
+    ]
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
   "cpu": {
     "format": "  {usage}%",
     "tooltip-format": "CPU Usage: {usage}%",
@@ -74,15 +103,22 @@
     "on-click-right": "pamixer -t"
   },
   "network": {
-    "interface": "wlp1s0",
-    "format": "{ifname}",
-    "format-wifi": "",
-    "format-ethernet": "{ipaddr}/{cidr} 󰊗",
-    "format-disconnected": "", //An empty format will hide the module.
-    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-    "tooltip-format-ethernet": "{ifname} ",
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰌗",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1,
   },
   "clock": {
     "interval": 60,
@@ -97,7 +133,7 @@
     "on-click": "omarchy-launch-bluetooth"
   },
   "battery": {
-    "format": "{icon}  {capacity}%",
+    "format": "{icon}   {capacity}%",
     "format-discharging": "{icon} {capacity}%",
     "format-charging": "{icon}  {capacity}%",
     "format-plugged": " {capacity}%",
@@ -127,7 +163,7 @@
         "󰁹"
       ]
     },
-    "format-full": "󰂅 {capacity}%",
+    "format-full": "󰂅  {capacity}%",
     "tooltip-format-discharging": "{timeTo}",
     "tooltip-format-charging": "{timeTo}",
     "interval": 5,
