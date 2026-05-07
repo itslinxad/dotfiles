@@ -26,6 +26,7 @@ PACKAGES=(
   stow
   cmake
   openssh
+  github-cli
 )
 
 DEV_PACKAGES=(
